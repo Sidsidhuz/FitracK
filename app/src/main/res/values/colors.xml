@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="fitness_primary">#FF00E676</color>
+    <color name="fitness_primary_dark">#FF00C853</color>
+    <color name="fitness_secondary">#FF00B0FF</color>
+    <color name="fitness_background">#FF0B0F14</color>
+    <color name="fitness_surface">#FF121821</color>
+    <color name="fitness_surface_variant">#FF1A2430</color>
+    <color name="fitness_outline">#FF263238</color>
+    <color name="fitness_on_background">#FFE8F1F2</color>
+    <color name="fitness_on_surface">#FFE8F1F2</color>
+    <color name="fitness_error">#FFFF5252</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>

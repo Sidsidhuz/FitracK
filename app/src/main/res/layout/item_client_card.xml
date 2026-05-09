@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/clientCard"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="14dp"
+    app:cardBackgroundColor="@color/fitness_surface"
+    app:cardCornerRadius="22dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/clientAvatar"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="14dp"
+            android:background="@drawable/bg_input_dark"
+            android:padding="12dp"
+            android:src="@android:drawable/sym_def_app_icon" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/clientName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/clientGoal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/fitness_secondary" />
+
+            <TextView
+                android:id="@+id/clientWeight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="#D9E8F1F2" />
+
+            <TextView
+                android:id="@+id/clientAttendance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#D9E8F1F2" />
+
+            <TextView
+                android:id="@+id/clientLastWorkout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#D9E8F1F2" />
+
+            <TextView
+                android:id="@+id/clientStreak"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/fitness_primary" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

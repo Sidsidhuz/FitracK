@@ -1,0 +1,17 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.FiTrack" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/fitness_primary</item>
+        <item name="colorPrimaryContainer">@color/fitness_primary_dark</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorSecondary">@color/fitness_secondary</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="android:colorBackground">@color/fitness_background</item>
+        <item name="colorOnBackground">@color/fitness_on_background</item>
+        <item name="colorSurface">@color/fitness_surface</item>
+        <item name="colorOnSurface">@color/fitness_on_surface</item>
+        <item name="colorSurfaceVariant">@color/fitness_surface_variant</item>
+        <item name="colorOutline">@color/fitness_outline</item>
+        <item name="android:statusBarColor">@color/fitness_background</item>
+        <item name="android:navigationBarColor">@color/fitness_background</item>
+    </style>
+</resources>

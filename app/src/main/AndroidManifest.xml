@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:name="com.example.fitrack.GymTrackerApp"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.FiTrack"
+        tools:targetApi="31">
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            tools:node="remove" />
+        <activity
+            android:name="com.example.fitrack.activities.PhotoUploadActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.fitrack.activities.ScheduleEditorActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.fitrack.activities.WorkoutEntryActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.fitrack.activities.ClientProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.fitrack.activities.AddClientActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.fitrack.activities.DashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.fitrack.activities.ForgotPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.fitrack.activities.SignupActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.fitrack.activities.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.fitrack.activities.SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
