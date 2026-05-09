@@ -21,6 +21,7 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
         void onClientClick(Client client);
 
         void onClientLongClick(Client client);
+        void onImportantToggle(Client client);
     }
 
     private final List<Client> clients = new ArrayList<>();
@@ -67,6 +68,9 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
             holder.avatar.setImageResource(android.R.drawable.sym_def_app_icon);
         }
 
+        holder.importantStar.setImageResource(client.isImportant() ? android.R.drawable.btn_star_big_on : android.R.drawable.btn_star_big_off);
+        holder.importantStar.setOnClickListener(v -> listener.onImportantToggle(client));
+
         holder.card.setOnClickListener(v -> listener.onClientClick(client));
         holder.card.setOnLongClickListener(v -> {
             listener.onClientLongClick(client);
@@ -99,7 +103,9 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
             attendance = itemView.findViewById(R.id.clientAttendance);
             lastWorkout = itemView.findViewById(R.id.clientLastWorkout);
             streak = itemView.findViewById(R.id.clientStreak);
+            importantStar = itemView.findViewById(R.id.importantStar);
         }
+        final android.widget.ImageButton importantStar;
     }
 }
 

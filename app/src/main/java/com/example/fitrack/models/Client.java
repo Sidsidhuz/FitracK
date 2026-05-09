@@ -16,6 +16,9 @@ public class Client implements Serializable {
     private double attendancePercentage;
     private String lastWorkout;
     private int workoutStreak;
+    private boolean isImportant;
+    private int reminderHour = 8; 
+    private int reminderMinute = 0;
 
     public Client() {
     }
@@ -140,6 +143,30 @@ public class Client implements Serializable {
 
     public void setWorkoutStreak(int workoutStreak) {
         this.workoutStreak = workoutStreak;
+    }
+
+    public boolean isImportant() {
+        return isImportant;
+    }
+
+    public void setImportant(boolean important) {
+        isImportant = important;
+    }
+
+    public int getReminderHour() {
+        return reminderHour;
+    }
+
+    public void setReminderHour(int reminderHour) {
+        this.reminderHour = reminderHour;
+    }
+
+    public int getReminderMinute() {
+        return reminderMinute;
+    }
+
+    public void setReminderMinute(int reminderMinute) {
+        this.reminderMinute = reminderMinute;
     }
 }
 

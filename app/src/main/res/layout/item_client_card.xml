@@ -9,26 +9,38 @@
     app:cardCornerRadius="22dp"
     app:cardElevation="4dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:padding="16dp">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/clientAvatar"
             android:layout_width="60dp"
             android:layout_height="60dp"
+            android:layout_alignParentStart="true"
             android:layout_marginEnd="14dp"
             android:background="@drawable/bg_input_dark"
             android:scaleType="centerCrop"
             android:src="@android:drawable/sym_def_app_icon"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
 
+        <ImageButton
+            android:id="@+id/importantStar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="8dp"
+            android:src="@android:drawable/btn_star_big_off"
+            app:tint="@color/fitness_primary" />
+
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_toEndOf="@id/clientAvatar"
+            android:layout_toStartOf="@id/importantStar"
             android:orientation="vertical">
 
             <TextView
@@ -71,5 +83,5 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/fitness_primary" />
         </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 </androidx.cardview.widget.CardView>

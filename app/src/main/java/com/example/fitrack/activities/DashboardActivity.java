@@ -36,7 +36,6 @@ public class DashboardActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         drawerLayout = findViewById(R.id.drawerLayout);
-        bottomNavigationView = findViewById(R.id.bottomNavigation);
         NavigationView navigationView = findViewById(R.id.navigationView);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -56,30 +55,7 @@ public class DashboardActivity extends AppCompatActivity {
             showFragment(new DashboardFragment());
         }
 
-        bottomNavigationView.setOnItemSelectedListener(item -> {
-            int itemId = item.getItemId();
-            if (itemId == R.id.menu_home) {
-                showFragment(new DashboardFragment());
-                return true;
-            }
-            if (itemId == R.id.menu_analytics) {
-                showFragment(AnalyticsFragment.newInstance(null));
-                return true;
-            }
-            if (itemId == R.id.menu_schedule) {
-                showFragment(ScheduleFragment.newInstance(null));
-                return true;
-            }
-            if (itemId == R.id.menu_attendance) {
-                showFragment(AttendanceFragment.newInstance(null));
-                return true;
-            }
-            if (itemId == R.id.menu_photos) {
-                showFragment(ProgressPhotosFragment.newInstance(null));
-                return true;
-            }
-            return false;
-        });
+
 
         navigationView.setNavigationItemSelectedListener(item -> {
             if (item.getItemId() == R.id.drawer_add_client) {

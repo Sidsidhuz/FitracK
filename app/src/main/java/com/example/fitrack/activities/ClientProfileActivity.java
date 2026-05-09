@@ -43,8 +43,18 @@ public class ClientProfileActivity extends AppCompatActivity {
         new TabLayoutMediator(binding.tabLayout, binding.viewPager, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
             public void onConfigureTab(@NonNull com.google.android.material.tabs.TabLayout.Tab tab, int position) {
+                int[] icons = {
+                    android.R.drawable.ic_menu_info_details,
+                    android.R.drawable.ic_menu_edit,
+                    android.R.drawable.ic_menu_sort_by_size,
+                    android.R.drawable.ic_menu_today,
+                    android.R.drawable.ic_menu_my_calendar,
+                    android.R.drawable.ic_menu_gallery
+                };
+                tab.setIcon(icons[position]);
+                
                 String[] titles = { "Overview", "Workouts", "Analytics", "Attendance", "Schedule", "Photos" };
-                tab.setText(titles[position]);
+                tab.setContentDescription(titles[position]);
             }
         }).attach();
 
