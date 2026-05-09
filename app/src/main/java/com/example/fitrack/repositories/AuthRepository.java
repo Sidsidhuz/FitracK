@@ -1,67 +1,110 @@
 package com.example.fitrack.repositories;
 
-import com.example.fitrack.interfaces.ActionCallback;
-import com.example.fitrack.firebase.FirebaseManager;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.util.Base64;
 
+import com.example.fitrack.GymTrackerApp;
+import com.example.fitrack.interfaces.ActionCallback;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 public class AuthRepository {
-    // simple in-memory auth for demo mode
-    private static final Map<String, String> USERS = new HashMap<>(); // email -> password
-    private static boolean signedIn = false;
+    private static final String PREFS_NAME = "fitrack_auth";
+    private static final String KEY_USERS = "users";
+    private static final String KEY_SIGNED_IN = "signed_in";
+    private static final String KEY_SESSION_EMAIL = "session_email";
 
     public boolean isSignedIn() {
-        if (FirebaseManager.isConfigured()) {
-            // real Firebase path would go here, but Firebase is disabled
-            return false;
-        }
-        return signedIn;
+        return preferences().getBoolean(KEY_SIGNED_IN, false);
     }
 
     public Object currentUser() {
-        // Compatibility shim for existing callers that only check for null.
-        // Returns a non-null placeholder when signed in, otherwise null.
-        return isSignedIn() ? new Object() : null;
+        String email = preferences().getString(KEY_SESSION_EMAIL, null);
+        return isSignedIn() ? email : null;
     }
 
     public void signIn(String email, String password, final ActionCallback callback) {
-        if (FirebaseManager.isConfigured()) {
-            callback.onError("Firebase is not enabled in this build.");
-            return;
-        }
-        String pw = USERS.get(email);
+        String pw = loadUsers().get(email);
         if (pw != null && pw.equals(password)) {
-            signedIn = true;
+            preferences().edit()
+                    .putBoolean(KEY_SIGNED_IN, true)
+                    .putString(KEY_SESSION_EMAIL, email)
+                    .apply();
             callback.onSuccess();
         } else {
-            callback.onError("Invalid credentials (demo mode)");
+            callback.onError("Invalid credentials");
         }
     }
 
     public void signUp(String email, String password, final ActionCallback callback) {
-        if (FirebaseManager.isConfigured()) {
-            callback.onError("Firebase is not enabled in this build.");
-            return;
-        }
-        USERS.put(email, password);
-        signedIn = true;
+        Map<String, String> users = loadUsers();
+        users.put(email, password);
+        saveUsers(users);
+        preferences().edit()
+                .putBoolean(KEY_SIGNED_IN, true)
+                .putString(KEY_SESSION_EMAIL, email)
+                .apply();
         callback.onSuccess();
     }
 
     public void sendPasswordReset(String email, final ActionCallback callback) {
-        if (FirebaseManager.isConfigured()) {
-            callback.onError("Firebase is not enabled in this build.");
-            return;
-        }
-        if (USERS.containsKey(email)) {
+        if (loadUsers().containsKey(email)) {
             callback.onSuccess();
         } else {
-            callback.onError("Email not registered (demo mode)");
+            callback.onError("Email not registered");
         }
     }
 
     public void logout() {
-        signedIn = false;
+        preferences().edit()
+                .putBoolean(KEY_SIGNED_IN, false)
+                .remove(KEY_SESSION_EMAIL)
+                .apply();
+    }
+
+    @SuppressWarnings("unchecked")
+    private Map<String, String> loadUsers() {
+        String encodedUsers = preferences().getString(KEY_USERS, null);
+        if (encodedUsers == null || encodedUsers.isEmpty()) {
+            return new HashMap<>();
+        }
+        try (ObjectInputStream inputStream = new ObjectInputStream(
+                new ByteArrayInputStream(Base64.decode(encodedUsers, Base64.DEFAULT)))) {
+            Object stored = inputStream.readObject();
+            if (stored instanceof Map) {
+                return new HashMap<>((Map<String, String>) stored);
+            }
+        } catch (IOException | ClassNotFoundException ignored) {
+            // Fall through to empty auth store if the data is unreadable.
+        }
+        return new HashMap<>();
+    }
+
+    private void saveUsers(Map<String, String> users) {
+        try (ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream();
+                ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteOutputStream)) {
+            objectOutputStream.writeObject((Serializable) new HashMap<>(users));
+            objectOutputStream.flush();
+            String encodedUsers = Base64.encodeToString(byteOutputStream.toByteArray(), Base64.NO_WRAP);
+            preferences().edit().putString(KEY_USERS, encodedUsers).apply();
+        } catch (IOException ignored) {
+            // Best-effort persistence for demo mode.
+        }
+    }
+
+    private SharedPreferences preferences() {
+        Context context = GymTrackerApp.getInstance();
+        if (context == null) {
+            throw new IllegalStateException("Application context is not available yet");
+        }
+        return context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
     }
 }
