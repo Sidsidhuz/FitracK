@@ -57,6 +57,17 @@ public class ClientProfileActivity extends AppCompatActivity {
                 binding.clientJoinDate.setText(client.getJoinDate());
                 binding.clientBmi.setText(String.format("BMI %.1f",
                         client.getHeight() > 0 ? client.getWeight() / Math.pow(client.getHeight() / 100d, 2) : 0d));
+                
+                String photoUrl = client.getProfilePhotoUrl();
+                if (photoUrl != null && !photoUrl.trim().isEmpty()) {
+                    try {
+                        binding.clientProfileAvatar.setImageURI(android.net.Uri.parse(photoUrl));
+                    } catch (Exception e) {
+                        binding.clientProfileAvatar.setImageResource(android.R.drawable.sym_def_app_icon);
+                    }
+                } else {
+                    binding.clientProfileAvatar.setImageResource(android.R.drawable.sym_def_app_icon);
+                }
             }
         });
     }

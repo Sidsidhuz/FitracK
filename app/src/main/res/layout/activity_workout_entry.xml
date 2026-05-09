@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/fitness_background"
+    android:fillViewport="true"
     tools:context=".activities.WorkoutEntryActivity">
 
     <LinearLayout
@@ -18,98 +19,323 @@
             android:layout_height="wrap_content"
             android:text="Add Workout"
             android:textColor="@color/white"
-            android:textSize="28sp"
+            android:textSize="30sp"
             android:textStyle="bold" />
 
-        <com.google.android.material.textfield.MaterialAutoCompleteTextView
-            android:id="@+id/categoryInput"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:hint="Category"
-            android:inputType="none"
-            android:padding="16dp" />
+            android:layout_marginTop="8dp"
+            android:text="Capture strength sessions with a category-aware workout flow."
+            android:textColor="#B3E8F1F2"
+            android:textSize="14sp" />
 
-        <com.google.android.material.textfield.MaterialAutoCompleteTextView
-            android:id="@+id/exerciseInput"
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:hint="Exercise"
-            android:inputType="none"
-            android:padding="16dp" />
+            android:layout_marginTop="18dp"
+            app:cardBackgroundColor="@color/fitness_surface"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="8dp"
+            app:strokeColor="@color/fitness_outline"
+            app:strokeWidth="1dp">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:hint="Date"
-            app:boxBackgroundMode="outline">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/dateInput"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="dd/MM/yyyy" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:orientation="vertical"
+                android:padding="18dp">
 
-        <com.google.android.material.textfield.TextInputLayout
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Workout Preview"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Category"
+                    android:textColor="#8FE8F1F2"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/previewCategoryValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/fitness_primary"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:text="Chest" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Exercise"
+                    android:textColor="#8FE8F1F2"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/previewExerciseValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:text="Bench Press" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Session"
+                    android:textColor="#8FE8F1F2"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/previewDateValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/fitness_secondary"
+                    android:textSize="16sp"
+                    tools:text="09 May 2026" />
+
+                <TextView
+                    android:id="@+id/previewVolumeValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_input_dark"
+                    android:padding="14dp"
+                    android:textColor="@color/fitness_on_surface"
+                    android:textSize="14sp"
+                    tools:text="0 kg ready" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:hint="Weight Used"
-            app:boxBackgroundMode="outline">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/weightInput"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="@color/fitness_surface"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="8dp"
+            app:strokeColor="@color/fitness_outline"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:orientation="vertical"
+                android:padding="18dp">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:hint="Sets"
-            app:boxBackgroundMode="outline">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/setsInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number" />
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Muscle Category"
+                    app:endIconMode="dropdown_menu"
+                    app:boxBackgroundMode="filled"
+                    app:boxBackgroundColor="@color/fitness_surface_variant"
+                    app:boxCornerRadiusTopStart="18dp"
+                    app:boxCornerRadiusTopEnd="18dp"
+                    app:boxCornerRadiusBottomStart="18dp"
+                    app:boxCornerRadiusBottomEnd="18dp">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:hint="Reps"
-            app:boxBackgroundMode="outline">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/repsInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number" />
-        </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                        android:id="@+id/categoryInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        android:padding="16dp"
+                        android:textColor="@color/white"
+                        android:textColorHint="#90E8F1F2"
+                        tools:text="Chest" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:hint="Notes"
-            app:boxBackgroundMode="outline">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/notesInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:hint="Exercise"
+                    app:endIconMode="dropdown_menu"
+                    app:boxBackgroundMode="filled"
+                    app:boxBackgroundColor="@color/fitness_surface_variant"
+                    app:boxCornerRadiusTopStart="18dp"
+                    app:boxCornerRadiusTopEnd="18dp"
+                    app:boxCornerRadiusBottomStart="18dp"
+                    app:boxCornerRadiusBottomEnd="18dp">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/saveWorkoutButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/bg_button_primary"
-            android:text="Save Workout"
-            android:textColor="@color/black" />
+                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                        android:id="@+id/exerciseInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        android:padding="16dp"
+                        android:textColor="@color/white"
+                        android:textColorHint="#90E8F1F2"
+                        tools:text="Bench Press" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:hint="Date"
+                    app:boxBackgroundMode="filled"
+                    app:boxBackgroundColor="@color/fitness_surface_variant"
+                    app:boxCornerRadiusTopStart="18dp"
+                    app:boxCornerRadiusTopEnd="18dp"
+                    app:boxCornerRadiusBottomStart="18dp"
+                    app:boxCornerRadiusBottomEnd="18dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/dateInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="false"
+                        android:inputType="none"
+                        android:padding="16dp"
+                        android:textColor="@color/white"
+                        android:textColorHint="#90E8F1F2"
+                        tools:text="09/05/2026" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="Weight Used"
+                        app:boxBackgroundMode="filled"
+                        app:boxBackgroundColor="@color/fitness_surface_variant"
+                        app:boxCornerRadiusTopStart="18dp"
+                        app:boxCornerRadiusTopEnd="18dp"
+                        app:boxCornerRadiusBottomStart="18dp"
+                        app:boxCornerRadiusBottomEnd="18dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/weightInput"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:padding="16dp"
+                            android:textColor="@color/white"
+                            android:textColorHint="#90E8F1F2" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:hint="Sets"
+                        app:boxBackgroundMode="filled"
+                        app:boxBackgroundColor="@color/fitness_surface_variant"
+                        app:boxCornerRadiusTopStart="18dp"
+                        app:boxCornerRadiusTopEnd="18dp"
+                        app:boxCornerRadiusBottomStart="18dp"
+                        app:boxCornerRadiusBottomEnd="18dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/setsInput"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:padding="16dp"
+                            android:textColor="@color/white"
+                            android:textColorHint="#90E8F1F2" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:hint="Reps"
+                    app:boxBackgroundMode="filled"
+                    app:boxBackgroundColor="@color/fitness_surface_variant"
+                    app:boxCornerRadiusTopStart="18dp"
+                    app:boxCornerRadiusTopEnd="18dp"
+                    app:boxCornerRadiusBottomStart="18dp"
+                    app:boxCornerRadiusBottomEnd="18dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/repsInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:padding="16dp"
+                        android:textColor="@color/white"
+                        android:textColorHint="#90E8F1F2" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:hint="Notes"
+                    app:boxBackgroundMode="filled"
+                    app:boxBackgroundColor="@color/fitness_surface_variant"
+                    app:boxCornerRadiusTopStart="18dp"
+                    app:boxCornerRadiusTopEnd="18dp"
+                    app:boxCornerRadiusBottomStart="18dp"
+                    app:boxCornerRadiusBottomEnd="18dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/notesInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minLines="3"
+                        android:gravity="top"
+                        android:inputType="textMultiLine"
+                        android:padding="16dp"
+                        android:textColor="@color/white"
+                        android:textColorHint="#90E8F1F2"
+                        tools:text="Focused tempo work" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/saveWorkoutButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_button_primary_gradient"
+                        android:paddingTop="14dp"
+                        android:paddingBottom="14dp"
+                        android:text="Save Workout"
+                        android:textColor="@color/black"
+                        android:textAllCaps="false"
+                        android:textSize="16sp"
+                        app:backgroundTint="@android:color/transparent"
+                        app:rippleColor="#3321E96A"
+                        app:cornerRadius="18dp"
+                        app:iconPadding="8dp" />
+
+                    <com.google.android.material.progressindicator.CircularProgressIndicator
+                        android:id="@+id/savingIndicator"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_gravity="center"
+                        android:visibility="gone"
+                        app:indicatorSize="28dp"
+                        app:indicatorColor="@color/black"
+                        app:trackColor="#5521E96A" />
+                </FrameLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

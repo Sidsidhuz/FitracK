@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
     android:layout_marginBottom="12dp"
     app:cardBackgroundColor="@color/fitness_surface"
-    app:cardCornerRadius="20dp">
+    app:cardCornerRadius="12dp"
+    app:cardElevation="2dp"
+    app:strokeColor="@color/fitness_outline"
+    app:strokeWidth="1dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,53 +17,51 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <TextView
-            android:id="@+id/workoutDate"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/fitness_primary"
-            android:textStyle="bold" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/sessionFocusText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-black"
+                android:text="Chest + Triceps"
+                android:textColor="@color/fitness_primary"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/sessionDateText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12/10/2023"
+                android:textColor="#A0AAB2"
+                android:textSize="14sp" />
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/workoutExercise"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/workoutCategory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textColor="@color/fitness_secondary" />
-
-        <TextView
-            android:id="@+id/workoutDetails"
-            android:layout_width="wrap_content"
+            android:id="@+id/sessionExercisesSummaryText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:textColor="#D9E8F1F2" />
+            android:lineSpacingExtra="4dp"
+            android:text="Bench Press: 3x10 (60kg)\nChest Fly: 3x12 (15kg)"
+            android:textColor="@color/fitness_on_surface"
+            android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/workoutNotes"
+            android:id="@+id/sessionStatusText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textColor="#B3E8F1F2" />
-
-        <TextView
-            android:id="@+id/workoutRecordBadge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="12dp"
             android:background="@drawable/bg_button_primary"
-            android:paddingHorizontal="10dp"
-            android:paddingVertical="6dp"
-            android:text="PR"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="4dp"
+            android:text="COMPLETED"
             android:textColor="@color/black"
-            android:visibility="gone" />
+            android:textSize="10sp"
+            android:textStyle="bold" />
     </LinearLayout>
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

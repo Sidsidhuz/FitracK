@@ -55,6 +55,18 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
         holder.lastWorkout
                 .setText("Last Workout: " + (client.getLastWorkout() == null ? "-" : client.getLastWorkout()));
         holder.streak.setText(String.format("Streak: %d days", client.getWorkoutStreak()));
+        
+        String photoUrl = client.getProfilePhotoUrl();
+        if (photoUrl != null && !photoUrl.trim().isEmpty()) {
+            try {
+                holder.avatar.setImageURI(android.net.Uri.parse(photoUrl));
+            } catch (Exception e) {
+                holder.avatar.setImageResource(android.R.drawable.sym_def_app_icon);
+            }
+        } else {
+            holder.avatar.setImageResource(android.R.drawable.sym_def_app_icon);
+        }
+
         holder.card.setOnClickListener(v -> listener.onClientClick(client));
         holder.card.setOnLongClickListener(v -> {
             listener.onClientLongClick(client);
